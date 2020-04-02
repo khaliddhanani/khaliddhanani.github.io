@@ -8,6 +8,50 @@
   <body>
     <div>
       <h1>Daniel's Dota</h1>
+
+      <h3>Daniel has played:</h3>
+      <h4 id="hours-total">
+        <script type="text/javascript">
+          var output = document.getElementById('hours-total');
+          var dataText = "";
+          var request = new XMLHttpRequest();
+          request.open('GET', "https://ojdz50bu07.execute-api.us-east-1.amazonaws.com/getSteamUserData", false);
+          request.onreadystatechange = function() {
+            if (request.readyState == XMLHttpRequest.DONE) {
+              dataText = request.responseText;
+            }
+          };
+          request.send();
+
+          var data = JSON.parse(dataText);
+          for (var i  = 0; i < data.response.games.length; i++) {
+            if (data.response.games[i].appid = 570) {
+              output.textContent = ((data.response.games[i].playtime_forever)/60) + " hours of Dota total";
+            }
+          }
+        </script>
+      </h4>
+      <h4 id="hours-2weeks">
+        <script type="text/javascript">
+          var output = document.getElementById('hours-2weeks');
+          var dataText = "";
+          var request = new XMLHttpRequest();
+          request.open('GET', "https://ojdz50bu07.execute-api.us-east-1.amazonaws.com/getSteamUserData", false);
+          request.onreadystatechange = function() {
+            if (request.readyState == XMLHttpRequest.DONE) {
+              dataText = request.responseText;
+            }
+          };
+          request.send();
+
+          var data = JSON.parse(dataText);
+          for (var i  = 0; i < data.response.games.length; i++) {
+            if (data.response.games[i].appid = 570) {
+              output.textContent = ((data.response.games[i].playtime_2weeks)/60) + " hours of Dota in the last 2 weeks";
+            }
+          }
+        </script>
+      </h4>
     </div>
   </body>
 </html>
